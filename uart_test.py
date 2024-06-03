@@ -23,7 +23,7 @@ def parse_gas_pump_data(raw_data):
     tong_da_bom_pass = raw_data[55:64]
     tien_dang_ban_pass = raw_data[64:73]
     
-    checksum_received = ord(raw_data[75])
+    checksum_received = raw_data[75]
 
     # Calculate checksum and validate
     calculated_checksum = calculate_checksum(raw_data)
@@ -60,10 +60,10 @@ def main():
         while True:
             # Send commands 11, 40, and 12 in decimal
             send_command(ser, 11)
-            send_command(ser, 40)
+            send_command(ser, 41)
             send_command(ser, 12)
             
-            time.sleep(1)  # Adjust timing as needed
+            time.sleep(2)  # Adjust timing as needed
 
             raw_data = ser.read(76)  # Read exactly 76 bytes of data
             print(raw_data)
