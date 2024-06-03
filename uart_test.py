@@ -60,7 +60,7 @@ def main():
         while True:
             # Send commands 11, 40, and 12 in decimal
             send_command(ser, 11)
-            send_command(ser, 41)
+            send_command(ser, 40)
             send_command(ser, 12)
             
             time.sleep(3)  # Adjust timing as needed
