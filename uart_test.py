@@ -66,9 +66,9 @@ def main():
             time.sleep(1)  # Adjust timing as needed
 
             raw_data = ser.read(76)  # Read exactly 76 bytes of data
-
+            print(raw_data)
             if len(raw_data) == 76:
-                parsed_data = parse_gas_pump_data(raw_data.decode('ascii'))
+                parsed_data = parse_gas_pump_data(raw_data)
                 print("Parsed Data:", parsed_data)
                 # Here you can store the parsed data in a database or process it further
             else:
