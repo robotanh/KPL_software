@@ -26,7 +26,7 @@ def parse_gas_pump_data(raw_data):
     checksum_received = raw_data[75]
 
     # Calculate checksum and validate
-    calculated_checksum = calculate_checksum(raw_data)
+    # calculated_checksum = calculate_checksum(raw_data)
     # if checksum_received != calculated_checksum:
     #     raise ValueError("Checksum mismatch")
 
@@ -53,7 +53,7 @@ def main():
     port = '/dev/ttyS0'  # Replace with your serial port
     baud_rate = 9600
 
-    ser = serial.Serial(port, baud_rate, timeout=3)
+    ser = serial.Serial(port, baud_rate, timeout=2)
     time.sleep(2)  # Wait for the serial connection to initialize
 
     try:
@@ -63,7 +63,7 @@ def main():
             send_command(ser, 40)
             send_command(ser, 12)
             
-            time.sleep(3)  # Adjust timing as needed
+            time.sleep(1)  # Adjust timing as needed
 
             raw_data = ser.read(76)  # Read exactly 76 bytes of data
             print(raw_data)
