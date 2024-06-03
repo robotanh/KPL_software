@@ -8,8 +8,8 @@ def calculate_checksum(data):
     return checksum
 
 def parse_gas_pump_data(raw_data):
-    if len(raw_data) != 76:
-        raise ValueError("Invalid data length")
+    # if len(raw_data) != 76:
+    #     raise ValueError("Invalid data length")
 
     trang_thai_voi = raw_data[2]
     id_voi = raw_data[3]
