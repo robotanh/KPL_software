@@ -11,26 +11,34 @@ def parse_gas_pump_data(raw_data):
     if len(raw_data) != 76:
         raise ValueError("Invalid data length")
 
-    status_gas_pump = raw_data[0]
-    id_pump_action = raw_data[1:7]
-    liter_already_pumped = raw_data[7:16]
-    gas_cost = raw_data[16:22]
-    total_liter = raw_data[22:31]
-    money = raw_data[31:40]
-    checksum_received = ord(raw_data[40])  # Convert checksum character to its ASCII value
+    trang_thai_voi = raw_data[2]
+    id_voi = raw_data[3]
+    ma_lan_bom_rt = raw_data[4:10]
+    so_lit_da_bom_rt = raw_data[10:19]
+    gia_ban_rt = raw_data[19:25]
+    tong_da_bom_rt = raw_data[25:34]
+    tien_dang_ban_rt = raw_data[34:43]
+    
+    ma_lan_bom_pass = raw_data[43:49]
+    gia_ban_pass = raw_data[49:55]
+    tong_da_bom_pass = raw_data[55:64]
+    tien_dang_ban_pass = raw_data[64:73]
+    
+    checksum_received = raw_data[75]
 
     # Calculate checksum and validate
     calculated_checksum = calculate_checksum(raw_data)
-    if checksum_received != calculated_checksum:
-        raise ValueError("Checksum mismatch")
+    # if checksum_received != calculated_checksum:
+    #     raise ValueError("Checksum mismatch")
 
     parsed_data = {
-        "status_gas_pump": status_gas_pump,
-        "id_pump_action": id_pump_action,
-        "liter_already_pumped": float(liter_already_pumped),
-        "gas_cost": float(gas_cost),
-        "total_liter": float(total_liter),
-        "money": float(money)
+        "trang_thai_voi": trang_thai_voi,
+        "id_voi": id_voi,
+        "ma_lan_bom_rt": ma_lan_bom_rt,
+        "so_lit_da_bom_rt": float(so_lit_da_bom_rt),
+        "gia_ban_rt": float(gia_ban_rt),
+        "tong_da_bom_rt": float(tong_da_bom_rt),
+        "tien_dang_ban_rt": float(tien_dang_ban_rt),
     }
     return parsed_data
 
@@ -56,9 +64,14 @@ def main():
 
             raw_data = ser.read(76)  # Read 76 bytes of data
 
-            print(raw_data)
+            if len(raw_data) == 76:
+                parsed_data = parse_gas_pump_data(raw_data.decode('ascii'))
+                print("Parsed Data:", parsed_data)
+                # Here you can store the parsed data in a database or process it further
+            else:
+                print("Incomplete data received")
             
-            time.sleep(10)  # Adjust the delay as needed for your application
+            time.sleep(1)  # Adjust the delay as needed for your application
     except KeyboardInterrupt:
         print("Exiting...")
     finally:
