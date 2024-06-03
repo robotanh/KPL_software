@@ -53,8 +53,8 @@ def main():
     port = '/dev/ttyS0'  # Replace with your serial port
     baud_rate = 9600
 
-    ser = serial.Serial(port, baud_rate, timeout=1)
-    time.sleep(2)  # Wait for the serial connection to initialize
+    ser = serial.Serial(port, baud_rate, timeout=2)
+    time.sleep(3)  # Wait for the serial connection to initialize
 
     try:
         while True:
