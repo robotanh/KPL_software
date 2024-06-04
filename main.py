@@ -23,7 +23,7 @@ def main():
 
             raw_data = ser.read(76)  # Read exactly 76 bytes of data
             print(raw_data)
-            mqtt_instance.client.publish("cambien1", raw_data)
+            # mqtt_instance.client.publish("cambien1", raw_data)
             if len(raw_data) == 76:
                 parsed_data = parse_gas_pump_data(raw_data)
                 print("Parsed Data:", parsed_data)
