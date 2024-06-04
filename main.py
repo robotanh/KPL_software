@@ -17,7 +17,7 @@ def main():
             send_command(ser, id_gas_pump)
             send_command(ser, 12)
             
-            time.sleep(1)  # Adjust timing as needed
+            time.sleep(0.5)  # Adjust timing as needed
 
             raw_data = ser.read(76)  # Read exactly 76 bytes of data
             print(raw_data)
@@ -28,7 +28,7 @@ def main():
             else:
                 print("Incomplete data received. Length:", len(raw_data))
             
-            time.sleep(2)  # Adjust the delay as needed for your application
+            time.sleep(1)  # Adjust the delay as needed for your application
 
             # Increment id_gas_pump and loop back if it exceeds 47
             id_gas_pump += 1
