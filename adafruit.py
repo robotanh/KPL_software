@@ -53,16 +53,16 @@ class Adafruit_MQTT:
 mqtt_instance = Adafruit_MQTT()
 
 
-while True:
-    print("Data is publishing.........")
+# while True:
+#     print("Data is publishing.........")
 
-    num1 = random.randint(10, 20)
-    num2 = random.randint(10, 20)
-    num3 = random.randint(10, 20)
-    mqtt_instance.client.publish("cambien1", num1)
-    mqtt_instance.client.publish("cambien2", num2)
-    mqtt_instance.client.publish("cambien3", num3)
-    print("cambien1 = ",num1)
-    print("cambien2 = ",num2)
-    print("cambien3 = ",num3)
-    time.sleep(5)
+#     num1 = random.randint(10, 20)
+#     num2 = random.randint(10, 20)
+#     num3 = random.randint(10, 20)
+#     mqtt_instance.client.publish("cambien1", num1)
+#     mqtt_instance.client.publish("cambien2", num2)
+#     mqtt_instance.client.publish("cambien3", num3)
+#     print("cambien1 = ",num1)
+#     print("cambien2 = ",num2)
+#     print("cambien3 = ",num3)
+#     time.sleep(5)
