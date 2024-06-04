@@ -38,12 +38,12 @@ def parse_gas_pump_data(raw_data):
     parsed_data = {
         "trang_thai_voi": trang_thai_voi,
         "id_voi": id_voi,
-        "ma_lan_bom_rt": ma_lan_bom_rt,
+        "ma_lan_bom_rt": int(ma_lan_bom_rt),
         "so_lit_da_bom_rt": float(so_lit_da_bom_rt),
         "gia_ban_rt": float(gia_ban_rt),
         "tong_da_bom_rt": float(tong_da_bom_rt),
         "tien_dang_ban_rt": float(tien_dang_ban_rt),
-        "ma_lan_bom_past": ma_lan_bom_past,
+        "ma_lan_bom_past": int(ma_lan_bom_past),
         "gia_ban_past": float(gia_ban_past),
         "tong_da_bom_past": float(tong_da_bom_past),
         "tien_dang_ban_past": float(tien_dang_ban_past)

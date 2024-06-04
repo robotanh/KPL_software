@@ -3,6 +3,7 @@ import time
 from uart import *
 from adafruit import *
 
+parsed_data = {}
 def main():
     port = '/dev/ttyS0'  # Replace with your serial port
     baud_rate = 9600
@@ -30,7 +31,7 @@ def main():
             else:
                 print("Incomplete data received. Length:", len(raw_data))
             
-            #time.sleep(1)  # Adjust the delay as needed for your application
+            time.sleep(5)  # Adjust the delay as needed for your application
 
             # Increment id_gas_pump and loop back if it exceeds 47
             id_gas_pump += 1
