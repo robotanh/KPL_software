@@ -21,6 +21,18 @@ def insert_gasbump_data(data):
     mycursor.execute(f"INSERT INTO {"gaspump_hist"} ({col}) VALUES (%s,%s,%s,%s,%s,%s)",tuple_val)
     db.commit()
 
+def filtered_insert(data):
+    query = "SELECT COUNT(*) FROM gaspump_hist WHERE id_voi = %s AND ma_lan_bom = %s"
+    mycursor.execute(query, (data["id_voi"], data["ma_lan_bom"]))
+    result = mycursor.fetchone()
+    
+    if result[0] == 0:
+        insert_gasbump_data(data)
+        print("Data inserted successfully.\n",data)
+    else:
+        print("Combination of id_voi and ma_lan_bom already exists. Data not inserted.")
+
+
 
 # def faking_data(id_voi_bom,ma_lan_bom):
 #     now = datetime.now()

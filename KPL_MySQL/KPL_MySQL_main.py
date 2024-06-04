@@ -14,7 +14,7 @@ def main():
         "tong_da_bom":5,
         "tien_ban":125000
     }
-    insert_gasbump_data(data)
+    filtered_insert(data)
 
 
 if __name__ == "__main__":
