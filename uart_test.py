@@ -22,10 +22,10 @@ def parse_gas_pump_data(raw_data):
     tong_da_bom_rt = raw_data[25:34]
     tien_dang_ban_rt = raw_data[34:43]
     
-    ma_lan_bom_pass = raw_data[43:49]
-    gia_ban_pass = raw_data[49:55]
-    tong_da_bom_pass = raw_data[55:64]
-    tien_dang_ban_pass = raw_data[64:73]
+    ma_lan_bom_past = raw_data[43:49]
+    gia_ban_past = raw_data[49:55]
+    tong_da_bom_past = raw_data[55:64]
+    tien_dang_ban_past = raw_data[64:73]
     
     checksum_received = raw_data[74]
 
@@ -43,10 +43,10 @@ def parse_gas_pump_data(raw_data):
         "gia_ban_rt": float(gia_ban_rt),
         "tong_da_bom_rt": float(tong_da_bom_rt),
         "tien_dang_ban_rt": float(tien_dang_ban_rt),
-        "ma_lan_bom_pass": ma_lan_bom_pass,
-        "gia_ban_pass": float(gia_ban_pass),
-        "tong_da_bom_pass": float(tong_da_bom_pass),
-        "tien_dang_ban_pass": float(tien_dang_ban_pass)
+        "ma_lan_bom_past": ma_lan_bom_past,
+        "gia_ban_past": float(gia_ban_past),
+        "tong_da_bom_past": float(tong_da_bom_past),
+        "tien_dang_ban_past": float(tien_dang_ban_past)
     }
     return parsed_data
 
