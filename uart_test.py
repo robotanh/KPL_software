@@ -2,8 +2,12 @@ import serial
 import time
 
 def calculate_checksum(data):
-    # Implement checksum calculation (assuming a simple sum for this example)
-    checksum = sum(ord(c) for c in data[:-1]) % 256
+    # XOR all bytes from byte 2 to byte 73
+    xor_sum = 0
+    for byte in data[2:74]:
+        xor_sum ^= ord(byte)
+    # XOR with 0x5A
+    checksum = xor_sum ^ 0x5A
     return checksum
 
 def parse_gas_pump_data(raw_data):
@@ -25,10 +29,9 @@ def parse_gas_pump_data(raw_data):
     
     checksum_received = raw_data[75]
 
-    # Calculate checksum and validate
-    # calculated_checksum = calculate_checksum(raw_data)
-    # if checksum_received != calculated_checksum:
-    #     raise ValueError("Checksum mismatch")
+    calculated_checksum = calculate_checksum(raw_data)
+    if checksum_received != calculated_checksum:
+        raise ValueError("Checksum mismatch")
 
     parsed_data = {
         "trang_thai_voi": trang_thai_voi,
