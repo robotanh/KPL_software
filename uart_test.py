@@ -30,6 +30,8 @@ def parse_gas_pump_data(raw_data):
     checksum_received = raw_data[75]
 
     calculated_checksum = calculate_checksum(raw_data)
+    print("calculated_checksum = ", calculated_checksum)
+    print("checksum_received = ", checksum_received)
     if checksum_received != calculated_checksum:
         raise ValueError("Checksum mismatch")
 
