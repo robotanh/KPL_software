@@ -5,7 +5,7 @@ def calculate_checksum(data):
     # XOR all bytes from byte 2 to byte 73
     xor_sum = 0
     for byte in data[2:74]:
-        xor_sum ^= ord(byte)
+        xor_sum ^= byte
     # XOR with 0x5A
     checksum = xor_sum ^ 0x5A
     return checksum
