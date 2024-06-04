@@ -1,4 +1,4 @@
-import serial
+
 import time
 
 def calculate_checksum(data):
