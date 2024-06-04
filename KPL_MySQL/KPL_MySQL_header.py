@@ -6,7 +6,7 @@ import time
 
 db = mysql.connector.connect(
     host="localhost",
-    user="admin",
+    user="root",
     passwd="999999999",
     database = "KPL_Gaspump_DB"
 )
