@@ -4,7 +4,7 @@ import time
 def calculate_checksum(data):
     # XOR all bytes from byte 2 to byte 73
     xor_sum = 0
-    for byte in data[2:74]:
+    for byte in data[2:73]:
         xor_sum ^= byte
     # XOR with 0x5A
     checksum = xor_sum ^ 0x5A
@@ -27,7 +27,7 @@ def parse_gas_pump_data(raw_data):
     tong_da_bom_pass = raw_data[55:64]
     tien_dang_ban_pass = raw_data[64:73]
     
-    checksum_received = raw_data[75]
+    checksum_received = raw_data[74]
 
     calculated_checksum = calculate_checksum(raw_data)
     print("calculated_checksum = ", calculated_checksum)
