@@ -2,7 +2,7 @@ import serial
 import time
 from uart import *
 from adafruit import *
-
+from KPL_MySQL.KPL_MySQL_header import *
 parsed_data = {}
 def main():
     port = '/dev/ttyS0'  # Replace with your serial port
@@ -27,6 +27,14 @@ def main():
             if len(raw_data) == 76:
                 parsed_data = parse_gas_pump_data(raw_data)
                 print("Parsed Data:", parsed_data)
+                data={
+                    "id_voi":parsed_data["id_voi"],
+                    "ma_lan_bom":parsed_data["ma_lan_bom_past"],
+                    "gia_ban":parsed_data["gia_ban_past"],
+                    "tong_da_bom":parsed_data["tong_da_bom_past"],
+                    "tien_ban":parsed_data["tien_dang_ban_past"]
+                }
+                filtered_insert(data)
                 # Here you can store the parsed data in a database or process it further
             else:
                 print("Incomplete data received. Length:", len(raw_data))
