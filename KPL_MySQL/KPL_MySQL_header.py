@@ -6,40 +6,41 @@ import time
 
 db = mysql.connector.connect(
     host="localhost",
-    user="KPL_admin",
-    passwd="adminkplpassword",
-    database = "kpl_gaspump_db"
+    user="admin",
+    passwd="999999999",
+    database = "KPL_Gaspump_DB"
 )
 
 mycursor = db.cursor()
 
-col="id_voi_bom,ma_lan_bom,thoi_gian,so_lit_da_bom,gia_ban_tren_lit,tong_ban_hang,so_tien_thu_ve"
+col="id_voi,ma_lan_bom,thoi_gian,gia_ban,tong_da_bom,tien_ban"
 
-def insert(table,id_voi_bom,ma_lan_bom,thoi_gian,so_lit_da_bom,gia_ban_tren_lit,tong_ban_hang,so_tien_thu_ve):
-    tuple_val=(id_voi_bom,ma_lan_bom,thoi_gian,so_lit_da_bom,gia_ban_tren_lit,tong_ban_hang,so_tien_thu_ve)
-    mycursor.execute(f"INSERT INTO {table} ({col}) VALUES (%s,%s,%s,%s,%s,%s,%s)",tuple_val)
+def insert_gasbump_data(data):
+    now = datetime.now()
+    tuple_val=(data["id_voi"],data["ma_lan_bom"],now.strftime("%Y-%m-%d %H:%M:%S"),data["gia_ban"],data["tong_da_bom"],data["tien_ban"])
+    mycursor.execute(f"INSERT INTO {"gaspump_hist"} ({col}) VALUES (%s,%s,%s,%s,%s,%s)",tuple_val)
     db.commit()
 
 
-def faking_data(id_voi_bom,ma_lan_bom):
-    now = datetime.now()
-    table="recent_gaspump"
-    thoi_gian=now.strftime("%Y-%m-%d %H:%M:%S")
-    so_lit_da_bom=random.randint(1, 20)
-    gia_ban_tren_lit=20000
-    tong_ban_hang=1
-    so_tien_thu_ve=so_lit_da_bom*gia_ban_tren_lit
+# def faking_data(id_voi_bom,ma_lan_bom):
+#     now = datetime.now()
+#     table="recent_gaspump"
+#     thoi_gian=now.strftime("%Y-%m-%d %H:%M:%S")
+#     so_lit_da_bom=random.randint(1, 20)
+#     gia_ban_tren_lit=20000
+#     tong_ban_hang=1
+#     so_tien_thu_ve=so_lit_da_bom*gia_ban_tren_lit
 
-    insert(table,
-    id_voi_bom,
-    ma_lan_bom,
-    thoi_gian,
-    so_lit_da_bom,
-    gia_ban_tren_lit,
-    tong_ban_hang,
-    so_tien_thu_ve)
+#     insert(table,
+#     id_voi_bom,
+#     ma_lan_bom,
+#     thoi_gian,
+#     so_lit_da_bom,
+#     gia_ban_tren_lit,
+#     tong_ban_hang,
+#     so_tien_thu_ve)
 
-    time.sleep(random.uniform(0, 5))
+#     time.sleep(random.uniform(0, 5))
 
 
 
