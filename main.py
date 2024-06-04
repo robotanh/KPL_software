@@ -1,6 +1,6 @@
 import serial
+import time
 from uart import *
-
 
 def main():
     port = '/dev/ttyS0'  # Replace with your serial port
@@ -10,10 +10,11 @@ def main():
     time.sleep(2)  # Wait for the serial connection to initialize
 
     try:
+        id_gas_pump = 40
         while True:
-            # Send commands 11, 40, and 12 in decimal
+            # Send commands 11, id_gas_pump, and 12 in decimal
             send_command(ser, 11)
-            send_command(ser, 40)
+            send_command(ser, id_gas_pump)
             send_command(ser, 12)
             
             time.sleep(1)  # Adjust timing as needed
@@ -27,7 +28,13 @@ def main():
             else:
                 print("Incomplete data received. Length:", len(raw_data))
             
-            time.sleep(5)  # Adjust the delay as needed for your application
+            time.sleep(2)  # Adjust the delay as needed for your application
+
+            # Increment id_gas_pump and loop back if it exceeds 47
+            id_gas_pump += 1
+            if id_gas_pump > 47:
+                id_gas_pump = 40
+
     except KeyboardInterrupt:
         print("Exiting...")
     finally:
