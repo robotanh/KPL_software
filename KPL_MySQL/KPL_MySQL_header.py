@@ -4,6 +4,12 @@ from datetime import datetime
 import random
 import time
 
+# db = mysql.connector.connect(
+#     host="localhost",
+#     user="root",
+#     passwd="7777777",
+#     database = "KPL_Gaspump_DB_test"
+# )
 db = mysql.connector.connect(
     host="localhost",
     user="root",
