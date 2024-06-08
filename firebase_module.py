@@ -3,12 +3,18 @@ from firebase_admin import credentials, db
 
 # Initialize Firebase Admin SDK
 def initialize_firebase():
-    cred = credentials.Certificate("firebaseConfig.json")
-    firebase_admin.initialize_app(cred)
+    cred = credentials.Certificate("./firebaseConfig.json")
+    firebase_admin.initialize_app(cred, {
+            'databaseURL': 'https://kpl-gaspump-realtime-default-rtdb.asia-southeast1.firebasedatabase.app/gas_pump_data'
+        })
 
 def store_data(raw_data):
-    ref = db.reference('gas_pump_data')
-    ref.push({
-        'raw_data': raw_data.decode('utf-8')
-    })
+    try:
+        ref = db.reference('gas_pump_data')
+        ref.push({
+            'raw_data': raw_data.decode('utf-8')
+        })
+        print("Raw data stored successfully.")
+    except Exception as e:
+        print(f"Failed to store raw data: {e}")
 
