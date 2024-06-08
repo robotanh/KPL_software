@@ -11,7 +11,7 @@ def initialize_firebase():
 def store_data(raw_data):
     try:
         ref = db.reference(f'gas_pump_data/Voi_1')
-        ref.push({
+        ref.update({
             'raw_data': raw_data.decode('utf-8')
         })
         print("Raw data stored successfully.")
