@@ -3,6 +3,10 @@ import time
 from uart import *
 from adafruit import *
 from KPL_MySQL.KPL_MySQL_header import *
+import firebase_module
+
+# Initialize Firebase
+firebase_module.initialize_firebase()
 parsed_data = {}
 def main():
     port = '/dev/ttyS0'  # Replace with your serial port
@@ -23,7 +27,8 @@ def main():
 
             raw_data = ser.read(76)  # Read exactly 76 bytes of data
             print(raw_data)
-            mqtt_instance.client.publish("cambien1", raw_data)
+            # mqtt_instance.client.publish("cambien1", raw_data)
+            firebase_module.store_data(raw_data)
             if len(raw_data) == 76:
                 parsed_data = parse_gas_pump_data(raw_data)
                 print("Parsed Data:", parsed_data)
