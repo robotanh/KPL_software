@@ -1,7 +1,7 @@
 import serial
 import time
 from uart import *
-from adafruit import *
+#from adafruit import *
 from KPL_MySQL.KPL_MySQL_header import *
 import firebase_module
 

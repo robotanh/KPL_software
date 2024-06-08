@@ -3,7 +3,6 @@
   "project_id": "kpl-gaspump-realtime",
   "private_key_id": "",
   "private_key": "",
-  "client_email": "firebase-adminsdk-90kea@kpl-gaspump-realtime.iam.gserviceaccount.com",
   "client_id": "110081820684003201574",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
