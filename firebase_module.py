@@ -8,9 +8,9 @@ def initialize_firebase():
             'databaseURL': 'https://kpl-gaspump-realtime-default-rtdb.asia-southeast1.firebasedatabase.app/gas_pump_data'
         })
 
-def store_data(raw_data):
+def store_data(raw_data , id_voi):
     try:
-        ref = db.reference(f'gas_pump_data/Voi_1')
+        ref = db.reference(f'gas_pump_data/Voi_{id_voi}')
         ref.update({
             'raw_data': raw_data.decode('utf-8')
         })
